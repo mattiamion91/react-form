@@ -14,6 +14,17 @@ function App() {
   function handleChange(e) {
     setNewTitle(e.target.value)
   }
+  //funzione gestione inzio form
+  function addTitle(e) {
+    //blocco il comportamento default del form
+    e.preventDefault();
+    //creo un nuovo array con gli elementi di quello di partenza + il nuovo input usando lo "spread operator"
+    const updatedTitles = [...titles, newTitle];
+    //cambio il valore della var di stato con array appena creato
+    setTitles(updatedTitles);
+    //ripulico il value dell'input
+    setNewTitle('');
+  }
 
   return (
     <>
@@ -29,7 +40,7 @@ function App() {
         </ul>
 
         {/*form per aggiungere titolo alla lista*/}
-        <form>
+        <form onSubmit={addTitle}>
           <div className="input-group">
             <input
               type="text"
@@ -37,7 +48,7 @@ function App() {
               placeholder='Aggiungi titolo'
               value={newTitle}
               onChange={handleChange} />
-            <button type='button' className='btn btn-primary'>Aggiungi</button>
+            <button type='submit' className='btn btn-primary'>Aggiungi</button>
           </div>
         </form>
       </main>
