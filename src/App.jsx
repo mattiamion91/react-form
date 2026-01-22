@@ -1,22 +1,39 @@
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react'
+
+//array da usare come valore iniziale della var di stato dei dati
+const initTitles = ['Vini dealcolati', 'I vini proibiti del Veneto', 'Tappo stevin o tappo in sughero?'];
 
 function App() {
 
-  return (<main className='container'>
-    <div className="row">
-      <div className="col">
-        <ul class="list-group">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
-        </ul>
-      </div>
-    </div>
+  //var di stato per gestire la lista titoli
+  const [titles, setTitles] = useState(initTitles)
 
-  </main>
+  return (
+    <>
+      <header>
+        <h1>React Blog Form</h1>
+      </header>
+      <main className='container'>
+        <ul className="list-group">
+          {titles.map((title, i) => (
+            <li className="list-group-item" key={i}>
+              {title}
+            </li>))}
+        </ul>
+
+        {/*form per aggiungere titolo alla lista*/}
+        <form>
+          <div className="input-group">
+            <input 
+            type="text" 
+            className='form-control'
+            placeholder='Aggiungi titolo'/>
+          <button type= 'button' className='btn btn-primary'>Aggiungi</button>
+          </div>
+        </form>
+      </main>
+    </>
 
   )
 }
