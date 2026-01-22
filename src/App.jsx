@@ -8,6 +8,12 @@ function App() {
 
   //var di stato per gestire la lista titoli
   const [titles, setTitles] = useState(initTitles)
+  //var di stato che gestisce valore input
+  const [newTitle, setNewTitle] = useState('')
+  //funzione gestione cambio var
+  function handleChange(e) {
+    setNewTitle(e.target.value)
+  }
 
   return (
     <>
@@ -25,11 +31,13 @@ function App() {
         {/*form per aggiungere titolo alla lista*/}
         <form>
           <div className="input-group">
-            <input 
-            type="text" 
-            className='form-control'
-            placeholder='Aggiungi titolo'/>
-          <button type= 'button' className='btn btn-primary'>Aggiungi</button>
+            <input
+              type="text"
+              className='form-control'
+              placeholder='Aggiungi titolo'
+              value={newTitle}
+              onChange={handleChange} />
+            <button type='button' className='btn btn-primary'>Aggiungi</button>
           </div>
         </form>
       </main>
