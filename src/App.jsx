@@ -18,12 +18,21 @@ function App() {
   function addTitle(e) {
     //blocco il comportamento default del form
     e.preventDefault();
+    // validazione per non inserire titoli vuoti (SE lo spazio é vuoto ferma la funzione con RETURN)
+    if (newTitle === '') return;
     //creo un nuovo array con gli elementi di quello di partenza + il nuovo input usando lo "spread operator"
     const updatedTitles = [...titles, newTitle];
     //cambio il valore della var di stato con array appena creato
     setTitles(updatedTitles);
     //ripulico il value dell'input
     setNewTitle('');
+  }
+  // funzione rimozione titolo
+  function removeTitle(i) {
+    const updatedTitles = titles.filter((task, indice) => {
+      return indice !== i
+    });
+    setTitles(updatedTitles)
   }
 
   return (
@@ -34,8 +43,12 @@ function App() {
       <main className='container'>
         <ul className="list-group">
           {titles.map((title, i) => (
-            <li className="list-group-item" key={i}>
+            <li className="list-group-item d-flex justify-content-between" key={i}>
               {title}
+              <button onClick={() => removeTitle(i)}
+                type='button'
+                className='btn btn-danger'>
+                Elimina</button>
             </li>))}
         </ul>
 
