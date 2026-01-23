@@ -1,5 +1,6 @@
 import './App.css'
 import { useState } from 'react'
+import MainHeader from './components/MainHeader';
 
 //array da usare come valore iniziale della var di stato dei dati
 const initTitles = ['Vini dealcolati', 'I vini proibiti del Veneto', 'Tappo stevin o tappo in sughero?'];
@@ -10,6 +11,7 @@ function App() {
   const [titles, setTitles] = useState(initTitles)
   //var di stato che gestisce valore input
   const [newTitle, setNewTitle] = useState('')
+
   //funzione gestione cambio var
   function handleChange(e) {
     setNewTitle(e.target.value)
@@ -29,7 +31,7 @@ function App() {
   }
   // funzione rimozione titolo
   function removeTitle(i) {
-    const updatedTitles = titles.filter((task, indice) => {
+    const updatedTitles = titles.filter((title, indice) => {
       return indice !== i
     });
     setTitles(updatedTitles)
@@ -37,9 +39,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <h1>React Blog Form</h1>
-      </header>
+      <MainHeader />
       <main className='container'>
         <ul className="list-group">
           {titles.map((title, i) => (
